@@ -23,7 +23,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
  * @since 1.0
  */
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
-public class LombokConfigMojo extends AbstractLombokConfigMojo
+public class LombokConfigMojo extends GeneratedLombokConfigMojo
 {
     @Component
     BuildContext buildContext;
@@ -119,7 +119,7 @@ public class LombokConfigMojo extends AbstractLombokConfigMojo
     private List<String[]> configuredFields()
     {
         final List<String[]> result = new ArrayList<>();
-        for (final Field f : AbstractLombokConfigMojo.class.getDeclaredFields()) {
+        for (final Field f : GeneratedLombokConfigMojo.class.getDeclaredFields()) {
             try {
                 final Config c = f.getAnnotation(Config.class);
                 if (c != null) {
