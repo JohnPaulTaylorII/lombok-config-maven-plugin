@@ -22,7 +22,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
  * @author John Paul Taylor II
  * @since 1.0
  */
-@Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.INITIALIZE)
 public class LombokConfigMojo extends GeneratedLombokConfigMojo
 {
     @Component
