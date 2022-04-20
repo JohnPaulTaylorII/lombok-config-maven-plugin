@@ -25,6 +25,17 @@ public abstract class GeneratedLombokConfigMojo extends AbstractMojo
     String checkerframework;
 
     /**
+     * <p>Which capitalization strategy to use when converting field names to accessor names and vice versa (default: basic).</p>
+     * Example:
+     * <pre>
+     * &lt;accessorsCapitalization&gt;[BASIC | BEANSPEC]&lt;/accessorsCapitalization&gt;
+     * </pre>
+     */
+    @Config("lombok.accessors.capitalization")
+    @Parameter(property="lombok.accessors.capitalization")
+    String accessorsCapitalization;
+
+    /**
      * <p>Generate setters that return 'this' instead of 'void' (default: false).</p>
      * Example:
      * <pre>
@@ -58,7 +69,18 @@ public abstract class GeneratedLombokConfigMojo extends AbstractMojo
     String accessorsFluent;
 
     /**
-     * <p>Strip this field prefix, like 'f' or 'm_', from the names of generated getters and setters.</p>
+     * <p>Generate getters, setters and with-ers with the 'final' modifier (default: false).</p>
+     * Example:
+     * <pre>
+     * &lt;accessorsMakeFinal&gt;[false | true]&lt;/accessorsMakeFinal&gt;
+     * </pre>
+     */
+    @Config("lombok.accessors.makeFinal")
+    @Parameter(property="lombok.accessors.makeFinal")
+    String accessorsMakeFinal;
+
+    /**
+     * <p>Strip this field prefix, like 'f' or 'm_', from the names of generated getters, setters, and with-ers.</p>
      * Value is a comma separated list. Example:
      * <pre>
      * &lt;accessorsPrefix&gt;[...text...]&lt;/accessorsPrefix&gt;
@@ -738,6 +760,17 @@ public abstract class GeneratedLombokConfigMojo extends AbstractMojo
     @Config("lombok.toString.includeFieldNames")
     @Parameter(property="lombok.toString.includeFieldNames")
     String toStringIncludeFieldNames;
+
+    /**
+     * <p>Include only fields/methods explicitly marked with @ToString.Include. Otherwise, include all non-static, non-dollar-named fields (default = false).</p>
+     * Example:
+     * <pre>
+     * &lt;toStringOnlyExplicitlyIncluded&gt;[false | true]&lt;/toStringOnlyExplicitlyIncluded&gt;
+     * </pre>
+     */
+    @Config("lombok.toString.onlyExplicitlyIncluded")
+    @Parameter(property="lombok.toString.onlyExplicitlyIncluded")
+    String toStringOnlyExplicitlyIncluded;
 
     /**
      * <p>Emit a warning or error if @UtilityClass is used.</p>
