@@ -103,7 +103,7 @@ public class LombokConfigMojo extends GeneratedLombokConfigMojo
     {
         final StringBuilder result = new StringBuilder();
         for (final String[] field : configuredFields()) {
-            if (field[0].isBlank()) {
+            if (field[0].isEmpty()) {
                 result.append('\n').append(field[1]).append(" = ").append(field[2]);
             } else {
                 for (final String value : field[2].split("\\s*,\\s*")) {
@@ -126,7 +126,7 @@ public class LombokConfigMojo extends GeneratedLombokConfigMojo
                     final String rawValue = (String)f.get(this);
                     if (rawValue != null && !rawValue.matches("^[\\s,]*$")) {
                         result.add(new String[] {
-                                c.list(), // is list if not blank
+                                c.list(), // is list if not empty
                                 c.value(), // configuration name
                                 rawValue // configured value
                         });
