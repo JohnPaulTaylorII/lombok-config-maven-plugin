@@ -14,6 +14,7 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
 /**
@@ -49,10 +50,18 @@ public class LombokConfigMojo extends GeneratedLombokConfigMojo
     @Parameter(property = "lombok.configLines")
     List<String> configLines;
 
+    @Parameter(defaultValue = "${project}", required = true, readonly = true)
+    MavenProject mavenProject;
+
     @Override
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        if ("pom".equalsIgnoreCase(mavenProject.getPackaging())) {
+            getLog().info("Skipping due to 'pom' packaging");
+            return;
+        }
+
         final String contents = makeConfig();
         if (shouldWriteConfig(contents)) {
             try {
