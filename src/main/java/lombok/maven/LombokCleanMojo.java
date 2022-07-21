@@ -14,7 +14,7 @@ import java.nio.file.Path;
  * @author immens
  * @since 1.9
  */
-@Mojo(name = "clean", defaultPhase = LifecyclePhase.CLEAN)
+@Mojo(name = "clean", defaultPhase = LifecyclePhase.CLEAN, threadSafe = true)
 public class LombokCleanMojo extends LombokConfigMojo
 {
 
